@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login — estilo Instagram</title>
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#fff;
+      --text:#262626;
+      --muted:#8e8e8e;
+      --border:#dbdbdb;
+      --primary:#0095f6;
+      --primary-pressed:#1877f2;
+      --error:#ed4956;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      background:var(--bg); color:var(--text); display:grid; place-items:center;
+    }
+    .wrap{ width:100%; max-width:935px; display:grid; grid-template-columns:1fr; gap:24px; padding:24px; }
+    @media(min-width:900px){ .wrap{ grid-template-columns: 1.1fr 1fr; align-items:center; } }
+
+    /* Phone mockup placeholder */
+    .mock{ display:none; }
+    @media(min-width:900px){
+      .mock{ display:flex; justify-content:center; }
+      .phone{ width:380px; height:580px; border:16px solid #111; border-bottom-width:24px; border-top-width:24px; border-radius:38px; position:relative; background:#000; box-shadow:0 20px 50px rgba(0,0,0,.1); }
+      .screen{ position:absolute; inset:16px; background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="520"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="%23f58529"/><stop offset="1" stop-color="%23dd2a7b"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="24">Preview</text></svg>') center/cover no-repeat; border-radius:24px; }
+    }
+
+    .stack{ max-width:350px; margin:0 auto; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:8px; padding:36px 40px; }
+    .logo{ font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:32px; letter-spacing:.2px; margin:4px 0 24px; text-align:center; }
+
+    form{ display:grid; gap:10px; }
+    .input{ position:relative; }
+    input[type="text"], input[type="password"]{
+      width:100%; background:#fafafa; border:1px solid var(--border); border-radius:4px; padding:12px 12px; font-size:14px; outline:none;
+    }
+    input:focus{ border-color:#a8a8a8; background:#fff; }
+    .toggle-pass{ position:absolute; right:8px; top:50%; transform:translateY(-50%); border:0; background:transparent; cursor:pointer; padding:6px; font-size:12px; color:var(--primary); }
+
+    .btn{ border:0; display:inline-grid; place-items:center; padding:10px 12px; font-weight:600; border-radius:8px; cursor:pointer; transition:transform .02s ease, opacity .2s ease; }
+    .btn:active{ transform:translateY(1px); }
+    .btn-primary{ background:var(--primary); color:white; opacity:.7; }
+    .btn-primary.enabled{ opacity:1; }
+
+    .or{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; color:var(--muted); font-weight:600; margin:10px 0; }
+    .or::before, .or::after{ content:""; height:1px; background:var(--border); }
+
+    .btn-fb{ display:flex; align-items:center; justify-content:center; gap:8px; border:1px solid var(--border); background:#fff; }
+    .btn-fb svg{ width:18px; height:18px; }
+
+    .forgot{ text-align:center; font-size:12px; color:#00376b; text-decoration:none; margin-top:10px; }
+
+    .card.small{ padding:20px 40px; margin-top:10px; text-align:center; }
+    .muted{ color:var(--muted); }
+    .link{ color:var(--primary); text-decoration:none; font-weight:600; }
+
+    .get-app{ text-align:center; margin-top:14px; }
+    .badges{ display:flex; gap:8px; justify-content:center; margin-top:8px; }
+    .badge{ border:1px solid var(--border); background:#fff; border-radius:8px; padding:8px 10px; font-size:12px; display:flex; align-items:center; gap:8px; }
+    .badge svg{ width:16px; height:16px; }
+
+    .error{ color:var(--error); font-size:12px; display:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mock">
+      <div class="phone">
+        <div class="screen" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="stack" aria-live="polite">
+      <div class="card">
+        <div class="logo" aria-label="Logo">InstaClone</div>
+        <form id="loginForm" novalidate>
+          <div class="input">
+            <label class="sr-only" for="user">Usuario, teléfono o email</label>
+            <input id="user" name="user" type="text" inputmode="email" autocomplete="username" placeholder="Usuario, teléfono o email" aria-required="true" />
+          </div>
+          <div class="input">
+            <label class="sr-only" for="pass">Contraseña</label>
+            <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="Contraseña" aria-required="true" />
+            <button class="toggle-pass" type="button" aria-label="Mostrar u ocultar contraseña">Mostrar</button>
+          </div>
+          <p id="errorMsg" class="error">Usuario o contraseña inválidos.</p>
+          <button id="submitBtn" class="btn btn-primary" type="submit" disabled>Iniciar sesión</button>
+        </form>
+
+        <div class="or">O</div>
+
+        <button class="btn btn-fb" type="button" aria-label="Continuar con Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.48 17.52 2 12 2S2 6.48 2 12.06c0 5.01 3.66 9.17 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.77 8.44-4.93 8.44-9.94z" fill="currentColor"/></svg>
+          Iniciar sesión con Facebook
+        </button>
+
+        <a class="forgot" href="#">¿Has olvidado la contraseña?</a>
+      </div>
+
+      <div class="card small">
+        <span class="muted">¿No tienes una cuenta?</span>
+        <a class="link" href="#">Regístrate</a>
+      </div>
+
+      <div class="get-app">
+        <div class="muted">Descarga la app</div>
+        <div class="badges">
+          <a class="badge" href="#" aria-label="Descargar en App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2c-.9 0-2 .6-2.6 1.4-.6.8-1 1.8-.8 2.9 1 .1 2.1-.6 2.8-1.4.7-.8 1.1-1.9.6-2.9zM12.5 6.5C10.6 6.5 9 7.8 8 7.8c-1.1 0-2.8-.9-4.6-.9-2.3 0-4.4 1.3-5.4 3.3C-3 14.4-.6 20 2.5 23c1.1 1 2.3 2 3.8 2 1.5 0 2.1-.6 3.9-.6 1.8 0 2.3.6 3.8.6 1.5 0 2.6-1 3.7-2 1.2-1.2 2.1-2.6 2.7-4.1-2.6-1.1-3.8-4.9-1.8-7.4-1.6-.9-3.3-1.8-5.1-1.8z" fill="currentColor"/></svg>
+            App Store
+          </a>
+          <a class="badge" href="#" aria-label="Disponible en Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.4.2-.6.6-.6 1.1v18.2c0 .5.2.9.6 1.1l9.8-10.2L3.6 1.8zm11.8 5.8l-2.9 3 2.9 3 4-2.1c1-.6 1-1.2 0-1.8l-4-2.1zM6 0l9.8 10.2L6 20.4l8.2-4.3 3.6-1.9c1.7-.9 1.7-3.4 0-4.3L14.2 8.1 6 0z" fill="currentColor"/></svg>
+            Google Play
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+    const btn = document.getElementById('submitBtn');
+    const err = document.getElementById('errorMsg');
+    const toggle = document.querySelector('.toggle-pass');
+
+    const validate = () => {
+      const ok = user.value.trim().length >= 3 && pass.value.trim().length >= 6;
+      btn.disabled = !ok;
+      btn.classList.toggle('enabled', ok);
+      err.style.display = 'none';
+    };
+    user.addEventListener('input', validate);
+    pass.addEventListener('input', validate);
+    validate();
+
+    toggle.addEventListener('click', () => {
+      const showing = pass.getAttribute('type') === 'text';
+      pass.setAttribute('type', showing ? 'password' : 'text');
+      toggle.textContent = showing ? 'Mostrar' : 'Ocultar';
+      pass.focus();
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simulación de login (reemplaza con tu lógica de backend/API)
+      const demoUser = 'erik';
+      const demoPass = '123456';
+      if (user.value.trim().toLowerCase() === demoUser && pass.value === demoPass) {
+        err.style.display = 'none';
+        alert('Inicio de sesión correcto. Redirigiendo...');
+        window.location.href = '#home';
+      } else {
+        err.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
