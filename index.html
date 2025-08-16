@@ -1,9 +1,9 @@
-<!doctype html>
+  <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login — estilo Instagram</title>
+  <title>PriveChat - Login</title>
   <style>
     :root{
       --bg:#fafafa;
@@ -21,7 +21,7 @@
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
       background:var(--bg); color:var(--text); display:grid; place-items:center;
     }
-    .wrap{ width:100%; max-width:935px; display:grid; grid-template-columns:1fr; gap:24px; padding:24px; }
+    .wrap{ width:100%; max-width:750px; display:grid; grid-template-columns:1fr; gap:24px; padding:24px; }
     @media(min-width:900px){ .wrap{ grid-template-columns: 1.1fr 1fr; align-items:center; } }
 
     /* Phone mockup placeholder */
@@ -29,7 +29,7 @@
     @media(min-width:900px){
       .mock{ display:flex; justify-content:center; }
       .phone{ width:380px; height:580px; border:16px solid #111; border-bottom-width:24px; border-top-width:24px; border-radius:38px; position:relative; background:#000; box-shadow:0 20px 50px rgba(0,0,0,.1); }
-      .screen{ position:absolute; inset:16px; background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="520"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="%23f58529"/><stop offset="1" stop-color="%23dd2a7b"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="24">Preview</text></svg>') center/cover no-repeat; border-radius:24px; }
+      .screen{ position:absolute; inset:16px; background:url('https://i.ibb.co/spbTMDZ4/5839134195442632403.jpg') center/cover no-repeat; border-radius:24px; }
     }
 
     .stack{ max-width:350px; margin:0 auto; }
@@ -79,7 +79,7 @@
 
     <div class="stack" aria-live="polite">
       <div class="card">
-        <div class="logo" aria-label="Logo">InstaClone</div>
+        <div class="logo" aria-label="Logo">PriveChat</div>
         <form id="loginForm" novalidate>
           <div class="input">
             <label class="sr-only" for="user">Usuario, teléfono o email</label>
@@ -109,20 +109,7 @@
         <a class="link" href="#">Regístrate</a>
       </div>
 
-      <div class="get-app">
-        <div class="muted">Descarga la app</div>
-        <div class="badges">
-          <a class="badge" href="#" aria-label="Descargar en App Store">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2c-.9 0-2 .6-2.6 1.4-.6.8-1 1.8-.8 2.9 1 .1 2.1-.6 2.8-1.4.7-.8 1.1-1.9.6-2.9zM12.5 6.5C10.6 6.5 9 7.8 8 7.8c-1.1 0-2.8-.9-4.6-.9-2.3 0-4.4 1.3-5.4 3.3C-3 14.4-.6 20 2.5 23c1.1 1 2.3 2 3.8 2 1.5 0 2.1-.6 3.9-.6 1.8 0 2.3.6 3.8.6 1.5 0 2.6-1 3.7-2 1.2-1.2 2.1-2.6 2.7-4.1-2.6-1.1-3.8-4.9-1.8-7.4-1.6-.9-3.3-1.8-5.1-1.8z" fill="currentColor"/></svg>
-            App Store
-          </a>
-          <a class="badge" href="#" aria-label="Disponible en Google Play">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8c-.4.2-.6.6-.6 1.1v18.2c0 .5.2.9.6 1.1l9.8-10.2L3.6 1.8zm11.8 5.8l-2.9 3 2.9 3 4-2.1c1-.6 1-1.2 0-1.8l-4-2.1zM6 0l9.8 10.2L6 20.4l8.2-4.3 3.6-1.9c1.7-.9 1.7-3.4 0-4.3L14.2 8.1 6 0z" fill="currentColor"/></svg>
-            Google Play
-          </a>
-        </div>
-      </div>
-    </div>
+
   </div>
 
   <script>
