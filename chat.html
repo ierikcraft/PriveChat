@@ -23,7 +23,7 @@
 </div>
 
 <script>
-const username = localStorage.getItem('PriveChatUser') || 'Anonimo';
+const username = localStorage.getItem('PriveChatName') || 'Anonimo';
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxCkAraLG-B2aFoNVmoPkNHdVr7VQir_nAQPDi7o6R0yHiqWhgWv4VTtTk1IGtex30k-A/exec';
 const chat = document.getElementById('chat');
 
@@ -54,8 +54,8 @@ async function sendMessage(){
     await fetch(SHEET_URL,{
       method:'POST',
       body: JSON.stringify({
-        user: username,
-        text: text,
+        user: name,
+        text: message,
         timestamp: new Date().toISOString()
       })
     });
