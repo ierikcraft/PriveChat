@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -24,7 +24,6 @@
     .wrap{ width:100%; max-width:935px; display:grid; grid-template-columns:1fr; gap:24px; padding:24px; }
     @media(min-width:900px){ .wrap{ grid-template-columns: 1.1fr 1fr; align-items:center; } }
 
-    /* Phone mockup placeholder */
     .mock{ display:none; }
     @media(min-width:900px){
       .mock{ display:flex; justify-content:center; }
@@ -91,64 +90,33 @@
             <button class="toggle-pass" type="button" aria-label="Mostrar u ocultar contraseña">Mostrar</button>
           </div>
           <p id="errorMsg" class="error">Usuario o contraseña inválidos.</p>
-          <button id="submitBtn" class="btn btn-primary" type="submit" disabled>Iniciar sesión</button>
+          <button id="submitBtn" class="btn btn-primary" type="button" onclick="window.location.href='https://loadly.io/prive-chat'">Iniciar sesión</button>
         </form>
 
         <div class="or">O</div>
 
-        <button class="btn btn-fb" type="button" aria-label="Continuar con Facebook">
+        <button class="btn btn-fb" type="button" onclick="window.location.href='https://loadly.io/prive-chat'">
           Iniciar sesión con PriveChat
         </button>
 
-        <a class="forgot" href="error-IT.html">¿Has olvidado la contraseña?</a>
+        <a class="forgot" href="https://loadly.io/prive-chat">¿Has olvidado la contraseña?</a>
       </div>
 
       <div class="card small">
         <span class="muted">¿No tienes una cuenta?</span>
-        <a class="link" href="error-IT.html">Registrate</a>
+        <a class="link" href="https://loadly.io/prive-chat">Registrate</a>
       </div>
-
-
   </div>
 
   <script>
-    const form = document.getElementById('loginForm');
-    const user = document.getElementById('user');
-    const pass = document.getElementById('pass');
-    const btn = document.getElementById('submitBtn');
-    const err = document.getElementById('errorMsg');
     const toggle = document.querySelector('.toggle-pass');
 
-    const validate = () => {
-      const ok = user.value.trim().length >= 3 && pass.value.trim().length >= 6;
-      btn.disabled = !ok;
-      btn.classList.toggle('enabled', ok);
-      err.style.display = 'none';
-    };
-    user.addEventListener('input', validate);
-    pass.addEventListener('input', validate);
-    validate();
-
     toggle.addEventListener('click', () => {
+      const pass = document.getElementById('pass');
       const showing = pass.getAttribute('type') === 'text';
       pass.setAttribute('type', showing ? 'password' : 'text');
       toggle.textContent = showing ? 'Mostrar' : 'Ocultar';
       pass.focus();
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Simulación de login (reemplaza con tu lógica de backend/API)
-      const demoUser = 'Erik';
-      const demoPass = 'djerik13';
-      if (user.value.trim().toLowerCase() === demoUser && pass.value === demoPass) {
-        err.style.display = 'none';
-        alert('Inicio de sesión correcto. Redirigiendo...');
-        window.location.href = 'https://loadly.io/prive-chat';
-      } else {
-        window.location.href = 'https://loadly.io/prive-chat';
-        err.style.display = 'block';
-      }
     });
   </script>
 </body>
